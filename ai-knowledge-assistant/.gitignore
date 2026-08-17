@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+.env.local
+frontend/.env.local
+backend/.env
+
+# Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+
+# Build outputs
+.next/
+out/
+frontend/.next/
+frontend/out/
+
+# Data and uploads
+backend/data/
+data/uploads/
+data/chroma/
+*.db
+*.sqlite3
+
+# OS/editor
+.DS_Store
+.vscode/
+*.swp
+
+# Logs
+*.log

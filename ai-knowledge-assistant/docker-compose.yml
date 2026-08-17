@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-knowledge-assistant-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:

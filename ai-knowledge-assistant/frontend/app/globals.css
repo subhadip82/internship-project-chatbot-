@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root,
+html[data-theme="dark"],
+[data-theme="dark"] {
+  --background: #070a12;
+  --foreground: #f8fafc;
+  --card-bg: #0d1322;
+  --card-border: #1e293b;
+  --card-inner: #111a2e;
+  --card-hover: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --navbar-bg: rgba(7, 10, 18, 0.82);
+  --navbar-border: #1e293b;
+  --input-bg: #111a2e;
+  --primary-accent: #2563eb;
+  --primary-accent-hover: #1d4ed8;
+  --user-bubble-bg: #2563eb;
+  --user-bubble-text: #ffffff;
+  --bot-bubble-bg: #0d1322;
+  --bot-bubble-border: #1e293b;
+  --glow-color: rgba(37, 99, 235, 0.15);
+  --grid-color: rgba(59, 130, 246, 0.07);
+}
+
+html[data-theme="light"],
+[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-inner: #f1f5f9;
+  --card-hover: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --navbar-bg: rgba(255, 255, 255, 0.88);
+  --navbar-border: #e2e8f0;
+  --input-bg: #f8fafc;
+  --primary-accent: #2563eb;
+  --primary-accent-hover: #1d4ed8;
+  --user-bubble-bg: #2563eb;
+  --user-bubble-text: #ffffff;
+  --bot-bubble-bg: #ffffff;
+  --bot-bubble-border: #e2e8f0;
+  --glow-color: rgba(37, 99, 235, 0.08);
+  --grid-color: rgba(15, 23, 42, 0.04);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.25);
+  color: inherit;
+}
+
+/* Animations for Pro Background */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) scale(1.05);
+  }
+  50% {
+    transform: translateY(22px) scale(0.98);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 12s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 7s ease-in-out infinite;
+}
+
+.animate-grid-move {
+  animation: gridMove 25s linear infinite;
+}
+
+/* Interactive Card Hover Utilities */
+.pro-card-hover {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+}
+
+.pro-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px var(--glow-color), 0 0 0 1px var(--primary-accent);
+}
+
+/* Mobile Safe-Area & PWA Utilities */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .safe-area-all {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Prevent accidental pull-to-refresh on standalone app */
+@media all and (display-mode: standalone) {
+  body {
+    overscroll-behavior-y: contain;
+  }
+}
+
+
